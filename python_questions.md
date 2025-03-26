@@ -74,13 +74,13 @@ Ans:
 - say_hello()
 
   
-🔹 Output:
-Before calling the function  
-Hello!  
-After calling the function  
-✅ Here, my_decorator adds extra behavior before and after say_hello(), without modifying say_hello() itself.
+- 🔹 Output:
+- Before calling the function  
+- Hello!  
+- After calling the function  
+- ✅ Here, my_decorator adds extra behavior before and after say_hello(), without modifying say_hello() itself.
 
-Example: Logging Function Calls
-Imagine you need to log when certain functions are called. Instead of adding logging manually to each function, use a decorator:
+- Example: Logging Function Calls
+- Imagine you need to log when certain functions are called. Instead of adding logging manually to each function, use a decorator:
 
 
