@@ -61,12 +61,13 @@ Ans:
 - It wraps the original function, allowing additional functionality before and/or after calling it.
 
 - Example: A Simple Decorator
+
   -def my_decorator(func):
-    - def wrapper():
-        - print("Before calling the function")
-        - func()
-        - print("After calling the function")
-    - return wrapper
+     - def wrapper():
+         - print("Before calling the function")
+         - func()
+         - print("After calling the function")
+     - return wrapper
  - @my_decorator
  - def say_hello():
     - print("Hello!")
@@ -74,12 +75,12 @@ Ans:
 
   
 - 🔹 Output:
- - Before calling the function  
- - Hello!  
- - After calling the function  
-- ✅ Here, my_decorator adds extra behavior before and after say_hello(), without modifying say_hello() itself.
+  - Before calling the function  
+  - Hello!  
+  - After calling the function  
+  - ✅ Here, my_decorator adds extra behavior before and after say_hello(), without modifying say_hello() itself.
 
 - Example: Logging Function Calls
-  - Imagine you need to log when certain functions are called. Instead of adding logging manually to each function, use a decorator:
+    - Imagine you need to log when certain functions are called. Instead of adding logging manually to each function, use a decorator:
 
 
