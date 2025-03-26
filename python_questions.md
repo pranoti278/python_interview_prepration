@@ -4,7 +4,7 @@ All the best and do your best , you are strong ,confidant and will achive great 
 
 Ans:
 
--def find_unique_pair(nums,target):
+- def find_unique_pair(nums,target):
  - seen=set()
  - for i in range(len(nums)):
    - for j in range(i+1,len(nums)):
