@@ -3,6 +3,7 @@ All the best and do your best , you are strong ,confidant and will achive great 
 ### 1) Write a Python function to find all unique pairs of integers in a list that sum up to a given target value
 
 Ans:
+
 -def find_unique_pair(nums,target):
  - seen=set()
  - for i in range(len(nums)):
