@@ -306,7 +306,7 @@ Ans:
   - Used in data science, financial analysis, and real-world data processing.
 
 
-#### 16 How do you handle missing values in Pandas? 
+#### 16) How do you handle missing values in Pandas? 
 - To check for missing values in a DataFrame:
   - import pandas as pd
   - df = pd.DataFrame({
@@ -332,27 +332,173 @@ df['A'].fillna(df['A'].median(), inplace=True)  # Fill with median
 df['A'].fillna(df['A'].mode()[0], inplace=True)  # Fill with mode
  
 
-5. Database & SQL 
- - Write an SQL query to find the second highest salary from an employee table. 
- - Explain the difference between INNER JOIN, LEFT JOIN, RIGHT JOIN, and FULL JOIN. 
- - What are indexes in SQL, and how do they improve performance? 
 
-6. Error Handling & Debugging 
- - What is the difference between `try-except` and `try-finally` in Python? 
- - How do you debug a Python program? 
+#### 17 What is the difference between `try-except` and `try-finally` in Python? 
+The try-except-finally block is used when:
+- try → Contains code that may raise an exception.
+- except → Handles specific exceptions.
+- finally → Executes cleanup code, whether an exception occurs or not.
+✅ Example 2: Handling Division by Zero
+try:
+    num = int(input("Enter a number: "))
+    result = 100 / num
+    print("Result:", result)
+except ZeroDivisionError:
+    print("Error: Cannot divide by zero!")
+except ValueError:
+    print("Error: Invalid input! Please enter a number.")
+finally:
+    print("Execution completed.")
+Output:
+Enter a number: 0
+Error: Cannot divide by zero!
+Execution completed.
 
-7. Multithreading & Concurrency 
- - What is the Global Interpreter Lock (GIL) in Python? 
- - How do you implement multithreading in Python? 
+Custom Error--
+In Python, you can create custom exceptions to handle specific error scenarios in a more meaningful way. 
+This is done by defining a new exception class that inherits from Exception.
 
-8. REST APIs & Web Development 
- - What is REST, and how does it differ from SOAP? 
+1️⃣ Why Use Custom Exceptions?
+✅ Makes error messages more descriptive.
+✅ Helps in debugging and logging specific issues.
+✅ Can enforce custom validation rules in programs.
+Use the raise keyword to trigger the exception.
+
+
+#### 18) How do you debug a Python program? 
+
+🔹 Best Practices for Debugging
+✔ Start with print/logging for small bugs.
+✔ Use assertions to validate conditions.
+✔ For complex issues, use pdb or an IDE debugger.
+✔ Log errors properly with logging.
+✔ Optimize performance with cProfile.
+
+
+#### 19) What is the Global Interpreter Lock (GIL) in Python? 
+The Global Interpreter Lock (GIL) is a mutex (lock) that allows only one thread to execute Python bytecode 
+at a time, even on multi-core processors.
+
+2️⃣ How Does GIL Affect Multithreading?
+Threads take turns executing (even on multi-core CPUs).
+Only one thread runs at a time, causing performance issues for CPU-intensive tasks.
+🔹 Even though two threads are created, due to GIL, Python executes them one at a time, instead of in parallel.
+🔹 So multithreading doesn’t speed up CPU-bound tasks.
+
+✅ 2. Use JIT Compilers (e.g., PyPy)
+PyPy (an alternative Python implementation) reduces GIL impact by optimizing execution.
+✅ 3. Use C Extensions (NumPy, Cython)
+Libraries like NumPy and Cython use C code under the hood, bypassing the GIL for computations.
+
+ #### How do you implement multithreading in Python? 
+
+ #### 20) Difference Between threading and multiprocessing
+ Multithreading:
+ > Runs multiple threads within the same process                                                                           
+ > ❌ No true parallelism (due to GIL)
+ > I/O-bound tasks (file I/O, web scraping, database queries)
+ > Shared memory between threads and Low (threads are lightweight)
+ > ❌ Slower due to GIL
+ > Web scraping, network calls, GUI applications
+
+Multiprocessing:
+> Runs multiple processes, each with its own memory
+> ✅ True parallel execution on multiple CPU cores
+> CPU-bound tasks (heavy computations, data processing)
+> Each process has its own memory
+>✅ Faster because processes run independently
+> Data processing, machine learning, image processing
+
+
+
+#### 21) What is REST, and how does it differ from SOAP? 
+1) Diff between REST and SOAP
+REST : 
+>REST (Representational State Transfer) 
+>An architectural style for designing networked applications
+>Uses HTTP, HTTPS (lightweight)
+>JSON, XML, Plain Text (human-readable)
+>✅ Faster and more efficient (less overhead)
+>✅ Simple, easy to integrate with web apps
+>Stateless (each request is independent) and Web services, APIs (e.g., RESTful APIs in FastAPI, Flask, Django)
+>Working with mobile, web applications, or microservices.
+SOAP:
+ > SOAP (Simple Object Access Protocol) 
+ > A protocol that defines rules for structuring messages
+ > Can use HTTP, SMTP, TCP (heavy)
+ > XML (strict, bulky)
+ > ❌ Strict XML format, less flexible
+ > ❌ Complex, requires more setup
+ > Stateful or Stateless
+ > Financial transactions, banking services
+
+ 1️⃣ What is REST? 🌍
+REST (Representational State Transfer) is a web service architecture that follows six constraints, including statelessness and resource-based communication.
+Uses HTTP methods: GET- Retrieve data from a server
+   POST-Add new data to the server
+   PUT- Add new data to the server
+   DELETE-,Remove data from the server
+Returns JSON or XML (lightweight, human-readable).
+Ideal for modern web and mobile applications.
+ 
+ 
+
  - How do you create a REST API using Flask or Django? 
  - Explain the role of middleware in Django. 
 
 
-10. Git & Version Control 
- - What is the difference between `git pull` and `git fetch`? 
- - How do you resolve a merge conflict in Git? 
+
+#### 24)  What is the difference between `git pull` and `git fetch`? 
+Git ftech : 
+> Downloads latest changes from the remote repository without merging
+> No changes to your working directory
+> ✅ Yes (safe, does not overwrite local work)	❌ Risky (may cause merge 
+
+ Git Pull  – Fetch + Merge
+ > Downloads and automatically merges changes into your local branch
+ > Updates your local branch immediately
+ > ❌ Risky (may cause merge conflicts)
+                                                       
+#### 25) What is the difference between Git and GitHub?
+ >A version control system
+                                                      
+
+
+
+                                                       
+ #### How do you resolve a merge conflict in Git? 
+When we Try to Merge the Branch,Git detects conflicts, it will show an error like:
+CONFLICT (content): Merge conflict in file.py
+Automatic merge failed; fix conflicts and then commit the result.
+2️⃣ Identify the Conflicted Files
+Run:
+git status
+You'll see output like:
+both modified:   file.py
+                                                       
+3️⃣ Open the Conflicted File
+The file will have conflict markers (<<<<<<<, =======, >>>>>>>), like this:
+<<<<<<< HEAD
+print("Hello from main branch")
+=======
+print("Hello from feature branch")
+>>>>>>> feature-branch
+HEAD represents your current branch (e.g., main).
+
+The other section is from the branch you are merging.
+
+4️⃣ Manually Fix the Conflict
+Edit the file to keep the desired version:
+print("Hello from feature branch - fixed version")
+Then save the file.
+
+5️⃣ Mark the Conflict as Resolved
+After fixing all conflicts, stage the file:
+git add file.py
+6️⃣ Complete the Merge
+git commit -m "Resolved merge conflict in file.py"
+7️⃣ Push the Changes (If Needed)
+git push origin main
+                                     
 
 
