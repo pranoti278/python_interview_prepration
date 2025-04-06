@@ -465,8 +465,7 @@ Git ftech :
 
 
 
-                                                       
- #### How do you resolve a merge conflict in Git? 
+#### 26) How do you resolve a merge conflict in Git? 
 When we Try to Merge the Branch,Git detects conflicts, it will show an error like:
 CONFLICT (content): Merge conflict in file.py
 Automatic merge failed; fix conflicts and then commit the result.
@@ -499,6 +498,155 @@ git add file.py
 git commit -m "Resolved merge conflict in file.py"
 7️⃣ Push the Changes (If Needed)
 git push origin main
+
+
+#### 27) Which oops concepts you have implemented & How have you implemented abstraction and encapsulation 
+As a Python developer with 3.5 years of experience, I have implemented various Object-Oriented Programming (OOP) concepts, 
+including Abstraction, Encapsulation, Inheritance, and Polymorphism.
+1. Abstraction
+Definition: Abstraction hides the implementation details and only exposes the necessary functionalities.
+Implementation:
+> I have used abstract classes and methods in Python using the abc module.
+Example: In one of my projects, I created an abstract base class for database connections, allowing different database implementations 
+(SQL Server, Snowflake) to follow the same interface.
+> This ensures that all database classes follow the same structure without exposing internal implementations.
+
+2. Encapsulation
+Definition: Encapsulation restricts direct access to certain object attributes and methods, ensuring controlled access.
+Implementation:
+> I have used private (__var) and protected (_var) variables to prevent direct modification.
+> Example: I implemented encapsulation in a user authentication system where sensitive user data like passwords were stored securely.
+Here, the password is encapsulated and cannot be accessed directly, ensuring data security.
+
+#### 29) How have you handled null pointer exception 
+Handling Null Pointer Exception in Python
+Python does not have a direct Null Pointer Exception like Java or C++, but it has a similar concept—NoneType errors. 
+These occur when you try to access attributes or call methods on a None object.
+> Common Causes of Null Pointer (NoneType) Errors
+> Accessing an attribute of a None object.
+> Calling a method on None.
+> Using None in operations where a valid object is expected.
+
+#### 30) What is compile time and run time polymorphism? How have you implemented them?
+1️⃣ Compile-Time Polymorphism (Method Overloading)
+Definition:
+> In Compile-Time Polymorphism, the method that will be executed is determined at compile time.
+> Python does not support method overloading like Java or C++ (because Python allows dynamic typing), 
+> but we can achieve similar behavior using default arguments or *args.
+
+Implementation in Python
+Using Default Arguments
+class Calculator:
+    def add(self, a, b=0, c=0):
+        return a + b + c
+
+calc = Calculator()
+print(calc.add(5))         # Output: 5
+print(calc.add(5, 10))     # Output: 15
+print(calc.add(5, 10, 15)) # Output: 30
+
+> Using *args for Variable-Length Arguments
+class Calculator:
+    def add(self, *args):
+        return sum(args)
+
+calc = Calculator()
+print(calc.add(5))         # Output: 5
+print(calc.add(5, 10))     # Output: 15
+print(calc.add(5, 10, 15)) # Output: 30
+Here, even though Python does not allow multiple methods with the same name, we achieve method overloading behavior by using *args or default values.
+
+2️⃣ Run-Time Polymorphism (Method Overriding)
+Definition:
+In Run-Time Polymorphism, the method that will be executed is determined at runtime.
+Achieved through method overriding in inheritance.
+
+Implementation in Python
+class Animal:
+    def speak(self):
+        return "Animal makes a sound"
+
+class Dog(Animal):
+    def speak(self):  # Overriding the parent class method
+        return "Dog barks"
+
+class Cat(Animal):
+    def speak(self):  # Overriding the parent class method
+        return "Cat meows"
+
+# Run-time polymorphism
+animals = [Dog(), Cat(), Animal()]
+for animal in animals:
+    print(animal.speak())  # Calls the overridden method based on the object type
+Output:
+Dog barks
+Cat meows
+Animal makes a sound
+The method to be executed is determined at runtime, making it run-time polymorphism.
+
+
+####31) Can you create an object of an interface?
+> No, you cannot create an object of an interface because an interface is meant to be a blueprint for classes. In Python,
+interfaces can be implemented using abstract base classes (ABCs) from the abc module.
+
+from abc import ABC, abstractmethod
+# Interface (Abstract Base Class)
+class Animal(ABC):
+    @abstractmethod
+    def speak(self):
+        pass  # No implementation
+
+# Trying to create an object of the interface
+animal = Animal()  # ❌ This will raise a TypeError
+
+#### 32) What is the difference between array list and Linked list
+An ArrayList and a LinkedList are both data structures used to store elements, but they differ in how they manage memory and perform operations. 
+An ArrayList is backed by a dynamic array, meaning it provides fast random access (O(1)) since elements are stored in contiguous memory locations.
+However, inserting or deleting elements in the middle requires shifting elements, making these operations O(n) in the worst case. On the other
+hand, a LinkedList consists of nodes that store data along with pointers to the next (and sometimes previous) node. This makes insertion and 
+deletion in the middle O(1) when a reference to the node is available, but random access is slow (O(n)) since traversal is required. 
+ArrayLists are more memory efficient due to lower overhead, whereas LinkedLists use extra memory for pointers. 
+If frequent modifications are needed, a LinkedList is preferable, but if fast access is required, an ArrayList is a better choice.
+
+#### 32) What is map
+map() Function in Python
+> The map() function in Python is used to apply a function to each element in an iterable (list, tuple, etc.) and returns a map object 
+(which is an iterator).
+
+Syntax:
+map(function, iterable)
+
+Example:
+numbers = [1, 2, 3, 4, 5]
+doubled = map(lambda x: x * 2, numbers)
+print(list(doubled))  # Output: [2, 4, 6, 8, 10]
+
+
+
+
+>>𝗔𝗣𝗜𝘀:
+1) What are the components of an HTTP request?
+2) What is the difference between API and unit testing?
+3) What is an HTTP response?
+4) How we can add validation points in postman?
+5) What do you understand by Server-side validation?
+6) What is 3 tier Architecture? 
+7) Difference between webservice & APIs
+8) What is Rest, Soap & GraphQL in APIs
+9) What do you test in standalone API?
+10) What do test in 3rd party integrated APIs?
+
+>>𝗣𝗼𝘀𝘁𝗺𝗮𝗻: 
+1) When to use collection, environment & global variables
+2) How to execute a collection E2E
+3) How to validate a API response has correct status code?
+4) What happens when API response returns Form Data instead of Json, how to validate it?
+5) How to setup Basic Auth in Postman?
+6) Where do you store Environment credentials?
+7) How to save a demo response for an API request?
+8) How will you validate an API rqst if VPN is required for it to work?
+9) How do you filter results in a API request using Postman?
+10) How to setup custom headers in Postman?
                                      
 
 
