@@ -608,7 +608,7 @@ deletion in the middle O(1) when a reference to the node is available, but rando
 ArrayLists are more memory efficient due to lower overhead, whereas LinkedLists use extra memory for pointers. 
 If frequent modifications are needed, a LinkedList is preferable, but if fast access is required, an ArrayList is a better choice.
 
-#### 32) What is map
+#### 33) What is map
 map() Function in Python
 > The map() function in Python is used to apply a function to each element in an iterable (list, tuple, etc.) and returns a map object 
 (which is an iterator).
@@ -625,28 +625,73 @@ print(list(doubled))  # Output: [2, 4, 6, 8, 10]
 
 
 >>𝗔𝗣𝗜𝘀:
-1) What are the components of an HTTP request?
-2) What is the difference between API and unit testing?
-3) What is an HTTP response?
-4) How we can add validation points in postman?
-5) What do you understand by Server-side validation?
-6) What is 3 tier Architecture? 
-7) Difference between webservice & APIs
-8) What is Rest, Soap & GraphQL in APIs
-9) What do you test in standalone API?
-10) What do test in 3rd party integrated APIs?
+34) What are RESTful APIs? How do they work?
+--- Ans :1️⃣ Client Sends a Request
+The client (browser, mobile app, or another service) sends an HTTP request to the server.
+The request includes:
+HTTP Method (e.g., GET, POST, PUT, DELETE).
+URL (Endpoint) (e.g., /users, /products/123).
+Headers (e.g., Authorization, Content-Type).
+Body (for POST or PUT requests).
 
->>𝗣𝗼𝘀𝘁𝗺𝗮𝗻: 
-1) When to use collection, environment & global variables
-2) How to execute a collection E2E
-3) How to validate a API response has correct status code?
-4) What happens when API response returns Form Data instead of Json, how to validate it?
-5) How to setup Basic Auth in Postman?
-6) Where do you store Environment credentials?
-7) How to save a demo response for an API request?
-8) How will you validate an API rqst if VPN is required for it to work?
-9) How do you filter results in a API request using Postman?
-10) How to setup custom headers in Postman?
-                                     
+2️⃣ Server Processes the Request
+The API receives the request and processes it using business logic.
+It may query a database, perform calculations, or modify data.
+
+3️⃣ Server Sends a Response
+The API responds with:
+HTTP Status Code (e.g., 200 OK, 404 Not Found).
+Response Body (e.g., JSON data).
+Headers (e.g., Content-Type: application/json).
+                                                                                                
+35)  What is the difference between PUT and POST methods in REST?
+PUT:
+> 	Used to update or create a resource at a specific location
+> Idempotent (Sending the same request multiple times won’t change the result)
+> The client specifies the resource URL (/users/123)
+> Replaces an existing resource or creates a new one if it doesn’t exist
+> Updating user details, replacing an existing file
+
+ POST:
+ > Used to create a new resource
+ > Not idempotent (Repeated requests may create duplicate resources)
+ > The server decides the resource URL (/users → Server assigns ID)
+ > Contains data to create a resource
+ > Submitting a form, adding a new user
+
+36) How do you handle authentication and authorization in a REST API?
+---> In a REST API, security is crucial to prevent unauthorized access. Authentication verifies who you are, 
+while authorization determines what you can do. Below are common methods used to handle both
+
+✅ Use HTTPS → Prevents data from being intercepted.
+✅ Secure Tokens → Store JWTs in HTTP-only cookies instead of local storage.
+✅ Limit API Rate → Prevent brute-force attacks using rate limiting.
+✅ Encrypt Sensitive Data → Hash passwords using bcrypt.
+✅ Use Expiring Tokens → Reduce risk of stolen tokens being used indefinitely.
 
 
+
+37) How do you version REST APIs and why is it important?
+🔄 Backward Compatibility → Prevents breaking changes for existing clients.
+🚀 Continuous Improvement → Allows new features without disrupting old versions.
+🛠 Bug Fixes & Enhancements → Maintains stable versions while updating new ones.
+🎯 Multiple Client Support → Different clients can use different API versions.
+
+
+38) What is the time complexity of merge sort?
+Merge Sort is a divide and conquer algorithm that splits the array into halves, sorts them recursively, and merges them back.--	O(n log n)
+There is no sorting algorithm called Binary Sort, but if you're referring to Binary Insertion Sort, 
+it's a modified version of Insertion Sort where binary search is used to find the correct position of an element.--O(n²)
+ 
+39)What are the status code are available?
+Commonly Used Status Codes in REST APIs
+200 OK → Successful GET request.
+201 Created → New resource successfully created.
+400 Bad Request → Invalid request format.
+401 Unauthorized → Authentication failure.
+403 Forbidden → User lacks permission.
+404 Not Found → Resource does not exist.
+500 Internal Server Error → Unexpected server failure.
+
+
+40) What is the website cookies?
