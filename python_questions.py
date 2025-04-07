@@ -695,3 +695,51 @@ Commonly Used Status Codes in REST APIs
 
 
 40) What is the website cookies?
+Cookies are small text files that websites store in your browser to remember information about you. They help improve user experience by
+saving preferences, login sessions, and tracking user behavior.
+✅ Enhance User Experience (Remember preferences & login info).
+✅ Enable Shopping Carts (Without them, cart items would disappear).
+✅ Improve Website Analytics (Track visitor behavior for improvements).
+❌ Can Be Used for Tracking (Privacy concerns with third-party cookies).
+
+
+#### Note --Use pip for libraries & frameworks.
+Use pipx for standalone CLI tools.
+
+Here are some of the most used Python string methods illustrated with examples:
+
+🔹 Case Transformation:
+"HELlo".lower() ➡️ hello
+"hello".upper() ➡️ HELLO
+
+🔹 Word Formatting:
+"hello world".capitalize() ➡️ Hello world
+"hello world".title() ➡️ Hello World
+
+🔹 Trimming and Formatting:
+" hello ".strip() ➡️ hello
+"Hello".startswith("He") ➡️ True
+"Hello".endswith("lo") ➡️ True
+
+🔹 Search and Replace:
+"hello".find("e") ➡️ 1
+"hello".index("e") ➡️ 1
+"hello world".count("o") ➡️ 2
+"one,three".replace(",", " ") ➡️ one three
+
+🔹 Splitting and Joining:
+"one,three".split(",") ➡️ ['one', 'three']
+"-".join(["a", "b", "c"]) ➡️ a-b-c
+
+🔹 Validation:
+"12345".isnumeric() ➡️ True
+
+
+1. “How would you find the first non-repeating value in a column using SQL?”
+2. “What’s your approach for optimizing a query that takes 15 minutes to run on a billion-row table?”
+3. “How do NULLs affect GROUP BY and JOINs? Can you give examples?”
+4. “How would you design a data model for a ride-sharing app?”
+5. “Explain normalization vs denormalization. When would you choose either?”
+ Write a Python script to read a large CSV file and perform transformations.
+ - How would you handle missing data in a dataset programmatically?
+ - Explain the use of decorators in Python.
