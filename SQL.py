@@ -1,0 +1,4 @@
+ - How do you optimize a slow-running SQL query?
+ - Write a query to find the second highest salary in a table.
+ - Explain the difference between WHERE and HAVING clauses.
+ - How do you handle NULL values in SQL?
