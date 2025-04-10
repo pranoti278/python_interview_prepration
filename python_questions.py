@@ -734,12 +734,255 @@ Here are some of the most used Python string methods illustrated with examples:
 🔹 Validation:
 "12345".isnumeric() ➡️ True
 
+41) Write a Python script to read a large CSV file and perform transformations.
+----Ans: I would use Python’s pandas library to efficiently read and process large CSV files in chunks. Using pd.read_csv(..., chunksize=10000), 
+I can iterate over smaller dataframes, apply transformations (like filtering, aggregations, or column modifications), and append results 
+to an output file or database. If memory is a constraint, I would use dask.dataframe for parallel processing or csv.reader for line-by-line
+reading.
 
-1. “How would you find the first non-repeating value in a column using SQL?”
-2. “What’s your approach for optimizing a query that takes 15 minutes to run on a billion-row table?”
-3. “How do NULLs affect GROUP BY and JOINs? Can you give examples?”
-4. “How would you design a data model for a ride-sharing app?”
-5. “Explain normalization vs denormalization. When would you choose either?”
- Write a Python script to read a large CSV file and perform transformations.
- - How would you handle missing data in a dataset programmatically?
- - Explain the use of decorators in Python.
+ 
+42) How would you handle missing data in a dataset programmatically?
+I handle missing data using Python’s pandas library. First, I check for missing values with df.isnull().sum(). Depending on the context,
+I either:
+Remove rows (df.dropna()) if missing values are minimal.
+Fill missing values (df.fillna()) using techniques like mean, median, mode, or forward/backward filling.
+Use interpolation (df.interpolate()) for time-series data.
+For categorical features, replace with the most frequent value or a placeholder like 'Unknown'.
+
+ 
+43) What are Python’s built-in data types? 
+Ans: Python has several built-in data types, categorized as follows:
+Numeric Types: int, float, complex
+Sequence Types: list, tuple, range
+Text Type: str
+Set Types: set, frozenset
+Mapping Type: dict
+Boolean Type: bool
+Binary Types: bytes, bytearray, memoryview
+None Type: NoneType
+ 
+44) What is the difference between `git pull` and `git fetch`? 
+Ans: 
+1. git fetch
+Retrieves the latest changes from the remote repository but does not merge them into your local branch.
+Updates your remote-tracking branches (origin/main, origin/dev, etc.), but your working directory remains unchanged.
+Allows you to review changes before integrating them using git merge or git rebase.
+------------git fetch origin
+
+2. git pull
+Fetches the latest changes from the remote repository and merges them into the current branch.
+Equivalent to running git fetch followed by git merge.
+updates your local branch immediately, potentially causing merge conflicts.
+
+ 45) How do you resolve a merge conflict in Git? 
+---git pull origin main
+---git merge feature-branch
+CONFLICT (content): Merge conflict in <filename>
+Automatic merge failed; fix conflicts and then commit the result.
+----git status
+---Open file and Fix the Conflict
+----Mark as resolved git add file_name.txt
+----git commit -m "Resolved merge conflict in file_name.txt"
+----git status
+----git push origin main
+
+
+46) Write a Python script to identify unique values in a list and count their occurrences. This tests your understanding of sets and dictionaries.
+from collections import Counter
+def count_unique_values(lst):
+    return Counter(lst)  # Automatically counts occurrences
+
+# Example list
+example_list = ["apple", "banana", "apple", "orange", "banana", "banana"]
+
+# Call function and print result
+result = count_unique_values(example_list)
+print(result)
+
+47)How would you use pandas to merge two datasets and calculate total sales for products with valid promotions? This involves merge(), groupby(),
+and basic data analysis functions.
+Ans: Example Scenario
+sales_data: Contains sales transactions (Product, Quantity, Price).
+promo_data: Contains promotional information (Product, Discount %, Validity).
+We merge both datasets on Product, filter only valid promotions, and calculate total sales.
+
+import pandas as pd
+
+# Sample Sales Data
+sales_data = pd.DataFrame({
+    'Product': ['A', 'B', 'C', 'A', 'B'],
+    'Quantity': [10, 5, 8, 7, 6],
+    'Price': [100, 200, 150, 100, 200]
+})
+
+# Sample Promotion Data
+promo_data = pd.DataFrame({
+    'Product': ['A', 'B', 'C'],
+    'Discount (%)': [10, 20, 0],  # 0 means no discount
+    'Valid': [True, True, False]  # Only A and B have valid promotions
+})
+
+# 1. Merge sales and promo data on 'Product'
+merged_df = pd.merge(sales_data, promo_data, on='Product', how='left')
+
+# 2. Filter only valid promotions
+valid_promo_df = merged_df[merged_df['Valid']]
+
+# 3. Calculate total sales (Quantity * Price)
+valid_promo_df['Total Sales'] = valid_promo_df['Quantity'] * valid_promo_df['Price']
+
+# 4. Group by Product and sum Total Sales
+total_sales_per_product = valid_promo_df.groupby('Product')['Total Sales'].sum()
+
+# Display results
+print(total_sales_per_product)
+
+
+Output:----
+Product
+A    1700
+B    2200
+Name: Total Sales, dtype: int64
+
+Explanation
+merge(sales_data, promo_data, on='Product', how='left')
+Merges sales and promo datasets on "Product".
+Uses left join so all sales remain, even if some products have no promo.
+valid_promo_df = merged_df[merged_df['Valid']]
+Filters only products with valid promotions.
+Total Sales = Quantity × Price
+Uses merged_df['Quantity'] * merged_df['Price'].
+groupby('Product').sum()
+Groups data by Product and sums Total Sales. 
+ 
+48)Write a Python script to parse a large JSON file, filter records based on a condition, and write the result to a database.
+ Ans: Reads a large JSON file efficiently using streaming (json.load or ijson for very large files).Filters records based on a condition.
+Inserts the filtered records into an SQLite database (can be adapted for other databases like PostgreSQL or MySQL).
+
+49)Implement a function to find the longest increasing subsequence in an array.
+ def longest_increasing_subsequence(nums):
+    if not nums:
+        return []
+
+    n = len(nums)
+    dp = [1] * n  # Each element is an LIS of length 1 initially
+    prev = [-1] * n  # To reconstruct the sequence
+
+    for i in range(n):
+        for j in range(i):
+            if nums[j] < nums[i] and dp[j] + 1 > dp[i]:
+                dp[i] = dp[j] + 1
+                prev[i] = j  # Store the previous index
+
+    # Find the maximum value in dp and reconstruct LIS
+    max_index = dp.index(max(dp))
+    lis = []
+    while max_index != -1:
+        lis.append(nums[max_index])
+        max_index = prev[max_index]
+
+    return lis[::-1]  # Reverse to get correct order
+
+# Example usage
+nums = [10, 22, 9, 33, 21, 50, 41, 60, 80]
+print(longest_increasing_subsequence(nums))  
+                                                     
+
+50) ⁠How do you process large CSV file without running to memory issues?
+Ans: Processing a large CSV file without memory issues requires efficient techniques such as streaming, chunking, and optimized libraries.
+import pandas as pd
+chunk_size = 100000  # Process 100,000 rows at a time
+for chunk in pd.read_csv("large_file.csv", chunksize=chunk_size):
+    # Process each chunk (e.g., filter, transform, save to DB)
+    print(chunk.head())  # Example operation
+   
+
+51) Write a function to merge two sorted arrays without using additional memory.
+Ans: def merge_sorted_arrays(arr1, m, arr2, n):
+    """
+    Merge arr2 into arr1 in-place. Assume arr1 has enough space at the end.
+    
+    :param arr1: List[int] - First sorted array with extra space.
+    :param m: int - Number of actual elements in arr1.
+    :param arr2: List[int] - Second sorted array.
+    :param n: int - Number of elements in arr2.
+    """
+    i, j, k = m - 1, n - 1, m + n - 1  # Pointers for arr1, arr2, and merged position
+    
+    while i >= 0 and j >= 0:
+        if arr1[i] > arr2[j]:
+            arr1[k] = arr1[i]
+            i -= 1
+        else:
+            arr1[k] = arr2[j]
+            j -= 1
+        k -= 1
+    
+    # If there are remaining elements in arr2, copy them
+    while j >= 0:
+        arr1[k] = arr2[j]
+        j -= 1
+        k -= 1
+
+# Example Usage
+arr1 = [1, 3, 5, 0, 0, 0]  # Extra space at the end
+m = 3  # Elements in arr1
+arr2 = [2, 4, 6]
+n = 3  # Elements in arr2
+
+merge_sorted_arrays(arr1, m, arr2, n)
+print(arr1)  # Output: [1, 2, 3, 4, 5, 6]
+
+        
+ • How would you parallelize a pandas operation on a dataset too large for a single core?
+Handling Big Data (100GB+)? → Use Dask
+Need a Pandas Replacement? → Use Modin
+Speeding up apply()? → Use Swifter
+Custom Parallelization? → Use Joblib
+Row-wise Processing? → Use Multiprocessing
+
+import pandas as pd
+from joblib import Parallel, delayed
+# Load dataset
+df = pd.read_csv("large_dataset.csv")
+# Define a function to process each chunk
+def process_chunk(chunk):
+    return chunk.groupby("category")["sales"].sum()
+# Split data into chunks
+chunks = [df[i:i+100000] for i in range(0, len(df), 100000)]
+# Run parallel processing
+results = Parallel(n_jobs=-1)(delayed(process_chunk)(chunk) for chunk in chunks)
+# Combine results
+final_result = pd.concat(results)
+print(final_result)
+                                                                
+                                                                
+
+52) What’s the difference between ETL and ELT?
+Ans: ETL (Extract, Transform, Load) and ELT (Extract, Load, Transform) 
+     are two data integration strategies, but they differ in when and where the transformation happens. 
+
+
+ETL: Before loading, using ETL tools
+     Requires staging servers for transformations
+     Slower for big data, limited scalability
+     	Traditional databases (SQL Server, Oracle)
+
+ ELT: After loading, inside the data warehouse
+     Uses cloud warehouses (Snowflake, BigQuery)
+      Faster, handles large datasets easily
+      Cloud-based analytics (Snowflake, BigQuery, Redshift)     
+
+53) Write a Python function to deduplicate a list while preserving order.
+ def remove_duplicates(lst):
+    seen = set()  # Stores already seen elements
+    return [x for x in lst if not (x in seen or seen.add(x))]
+
+# Example usage
+numbers = [1, 3, 2, 3, 4, 1, 5, 2, 6]
+unique_numbers = remove_duplicates(numbers)
+
+print(unique_numbers)  # Output: [1, 3, 2, 4, 5, 6]
+          
+ • How do you clean missing values in pandas?
+
